@@ -1,0 +1,99 @@
+---
+title: Quick Start
+description: Get up and running with our documentation in minutes
+---
+
+# Quick Start
+
+This guide will help you get started with creating and managing your documentation.
+
+## Prerequisites
+
+Before you begin, ensure you have:
+
+- A GitHub account
+- Basic knowledge of Markdown
+- Node.js installed (for local preview)
+
+## Step 1: Create Your Repository
+
+Start by creating a new repository for your documentation:
+
+```bash
+# Create a new directory
+mkdir my-docs
+cd my-docs
+
+# Initialize git
+git init
+
+# Create your first documentation file
+echo "# Welcome to My Docs" > introduction.mdx
+```
+
+## Step 2: Configure Navigation
+
+Create a `documentation.json` file to define your site structure:
+
+```json
+{
+  "name": "My Documentation",
+  "theme": {
+    "primaryColor": "#0070F3"
+  },
+  "navigation": [
+    {
+      "group": "Getting Started",
+      "pages": [
+        {
+          "title": "Introduction",
+          "path": "introduction"
+        }
+      ]
+    }
+  ]
+}
+```
+
+## Step 3: Write Your Content
+
+Use MDX to create rich documentation with React components:
+
+```mdx
+---
+title: My First Page
+description: Learning MDX
+---
+
+# My First Page
+
+Welcome to **MDX**! You can use:
+
+- Regular Markdown syntax
+- React components
+- Code blocks with syntax highlighting
+
+## Example Code
+
+\`\`\`javascript
+function greet(name) {
+console.log(`Hello, ${name}!`);
+}
+\`\`\`
+```
+
+## Step 4: Deploy
+
+Once your content is ready:
+
+1. Push your changes to GitHub
+2. Connect your repository to our platform
+3. Your documentation will be automatically built and deployed
+
+## Next Steps
+
+- Explore [Configuration Options](/guides/configuration)
+- Learn about [Advanced Features](/guides/advanced-features)
+- Check out [Best Practices](/guides/best-practices)
+
+Happy documenting! 🚀

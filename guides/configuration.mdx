@@ -1,0 +1,220 @@
+---
+title: Configuration
+description: Learn how to customize your documentation site
+---
+
+# Configuration
+
+Customize your documentation site to match your brand and requirements.
+
+## documentation.json
+
+The `documentation.json` file is the heart of your site configuration. Here's a complete reference:
+
+```json
+{
+  "name": "Your Documentation",
+  "logo": "/path/to/logo.png",
+  "favicon": "/favicon.ico",
+  "theme": {
+    "primaryColor": "#0070F3",
+    "font": "Inter",
+    "darkMode": true
+  },
+  "navigation": [
+    {
+      "group": "Getting Started",
+      "pages": [
+        {
+          "title": "Introduction",
+          "path": "introduction"
+        },
+        {
+          "title": "Installation",
+          "path": "installation"
+        }
+      ]
+    }
+  ],
+  "social": {
+    "github": "https://github.com/yourorg/yourrepo",
+    "twitter": "https://twitter.com/yourhandle",
+    "discord": "https://discord.gg/yourinvite"
+  }
+}
+```
+
+## Theme Configuration
+
+### Colors
+
+Customize your site's primary color:
+
+```json
+{
+  "theme": {
+    "primaryColor": "#0070F3"
+  }
+}
+```
+
+Supported color formats:
+
+- Hex: `#0070F3`
+- RGB: `rgb(0, 112, 243)`
+- HSL: `hsl(214, 100%, 48%)`
+
+### Typography
+
+Choose from available font families:
+
+```json
+{
+  "theme": {
+    "font": "Inter" // Options: Inter, Roboto, Open Sans, Lato
+  }
+}
+```
+
+### Dark Mode
+
+Enable or disable dark mode:
+
+```json
+{
+  "theme": {
+    "darkMode": true // true | false | "system"
+  }
+}
+```
+
+## Navigation Structure
+
+### Simple Navigation
+
+For a flat structure:
+
+```json
+{
+  "navigation": [
+    {
+      "title": "Home",
+      "path": "/"
+    },
+    {
+      "title": "About",
+      "path": "about"
+    }
+  ]
+}
+```
+
+### Grouped Navigation
+
+For organized sections:
+
+```json
+{
+  "navigation": [
+    {
+      "group": "Guides",
+      "pages": [
+        {
+          "title": "Quick Start",
+          "path": "guides/quick-start"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Nested Groups
+
+For complex documentation:
+
+```json
+{
+  "navigation": [
+    {
+      "group": "API Reference",
+      "pages": [
+        {
+          "title": "Overview",
+          "path": "api/overview"
+        },
+        {
+          "group": "Endpoints",
+          "pages": [
+            {
+              "title": "Users",
+              "path": "api/endpoints/users"
+            },
+            {
+              "title": "Posts",
+              "path": "api/endpoints/posts"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+## MDX Frontmatter
+
+Each MDX file can have frontmatter for page-specific configuration:
+
+```mdx
+---
+title: Page Title
+description: SEO description
+image: /og-image.png
+keywords: [documentation, guide, tutorial]
+author: John Doe
+date: 2024-01-15
+---
+```
+
+## Environment Variables
+
+For deployment configuration, you can use environment variables:
+
+| Variable         | Description            | Default       |
+| ---------------- | ---------------------- | ------------- |
+| `DOCS_REPO_URL`  | Git repository URL     | Required      |
+| `SITE_URL`       | Your documentation URL | Auto-detected |
+| `GA_TRACKING_ID` | Google Analytics ID    | None          |
+
+## Advanced Configuration
+
+### Custom Components
+
+Register custom MDX components in your build:
+
+```javascript
+// Custom callout component
+<Callout type="info">This is an informational callout</Callout>
+```
+
+### Redirects
+
+Configure redirects for moved pages:
+
+```json
+{
+  "redirects": [
+    {
+      "from": "/old-path",
+      "to": "/new-path"
+    }
+  ]
+}
+```
+
+## Next Steps
+
+- Learn about [MDX Components](/guides/mdx-components)
+- Explore [Deployment Options](/guides/deployment)
+- Check out [Troubleshooting](/guides/troubleshooting)

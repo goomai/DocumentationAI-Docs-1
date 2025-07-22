@@ -1,66 +1,581 @@
-# Introduction to DocumentationAI
+---
+title: Component Testing Documentation
+description: A comprehensive test of all MDX components available in DocumentationAI
+---
 
-This is the best sub text ever that you can have in this world. I am writing some shit which i might forget in near future. as a
+# Complete MDX Components Test Suite
 
-<Callout uid="0012f037-326e-4aa6-9137-ec9950d4ace7" kind="note" collapsed="false">
-  This is the note of the year: dont note anything.
+Welcome to our comprehensive testing documentation. This page demonstrates all available MDX components with various configurations and use cases.
+
+## Table of Contents
+
+1. [Images and Media](#images-and-media)
+2. [Callout Components](#callout-components)
+3. [Code Examples](#code-examples)
+4. [Tables and Data](#tables-and-data)
+5. [Advanced Layouts](#advanced-layouts)
+
+---
+
+## Images and Media
+
+### Basic Image
+
+<Image
+  uid="test-image-001"
+  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
+  width="800"
+  height="600"
+  alt="Beautiful mountain landscape at sunset"
+/>
+
+### Responsive Image with Custom Styling
+
+<Image
+  uid="test-image-002"
+  src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=1200&h=800&fit=crop"
+  width="1200"
+  height="800"
+  alt="Modern workspace with laptop and coffee"
+  style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
+/>
+
+## Callout Components
+
+### All Callout Types
+
+<Callout uid="callout-note-001" kind="note" collapsed="false">
+  **Note:** This is a standard note callout. Use it to provide additional information that might be
+  helpful but isn't critical to understanding the main content. Notes can contain **bold text**,
+  *italic text*, and even `inline code`.
 </Callout>
 
-## This is another sub heading of the year
+<Callout uid="callout-warning-001" kind="warning" collapsed="false">
+  **Warning:** This callout is for important information that users should be aware of. It might
+  indicate: - Potential issues or gotchas - Important considerations - Things that could go wrong if
+  not handled properly
+</Callout>
 
-this will gave code blocks so get ready for some code.
+<Callout uid="callout-tip-001" kind="tip" collapsed="false">
+  **Pro Tip:** Use tip callouts to share best practices, shortcuts, or helpful suggestions that can
+  improve the user's experience or workflow.
+</Callout>
 
-<CodeGroup>
+<Callout uid="callout-error-001" kind="danger" collapsed="false">
+  **Error:** This indicates critical issues that must be addressed. Use error callouts sparingly and
+  only for situations that will definitely cause problems if ignored.
+</Callout>
+
+### Collapsible Callouts
+
+<Callout uid="callout-collapsed-001" kind="note" collapsed="true">
+  This callout starts collapsed. Click to expand and see the full content. This is useful for
+  optional information that might clutter the main reading flow. You can include lots of detailed
+  information here without overwhelming readers who just want the basics.
+</Callout>
+
+### Callouts with Code
+
+<Callout uid="callout-with-code-001" kind="tip" collapsed="false">
+  You can include code snippets inside callouts:
+  
   ```javascript
-  // Add your code here
-  const baseExtensions = [
-        EditorState.readOnly.of(true),
-        ...(languageExtension ? [languageExtension] : []),
-        lineNumbers(),
-        foldGutter(),
-        EditorView.lineWrapping,
-        // Add syntax highlighting
-        syntaxHighlighting(defaultHighlightStyle, { fallback: true }),
-        // Add theme configuration for better visual styling
-        EditorView.theme({
-          '&': {
-            height: '100%',
-            fontFamily: `"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`,
-          },
-          '.cm-scroller': {
-            fontFamily: 'inherit',
-          },
-          // Ensure proper contrast for syntax highlighting
-          '.cm-content': {
-            caretColor: 'var(--body)',
-          },
-        }),
-      ];
+  // This is a helpful tip with code
+  const optimizedFunction = () => {
+    return performance.now();
+  };
   ```
+</Callout>
 
-  ```python
-  def news {
-    print("new")
-  }
-  ```
-</CodeGroup>
+## Code Examples
 
-Now code group is done, lets add an individual code block here
+### Single Code Blocks
+
+#### JavaScript Example
 
 ```javascript
- if (mergeViewRef.current) {
-    mergeViewRef.current.destroy();
- }
+// Advanced JavaScript patterns
+class DocumentationGenerator {
+  constructor(config = {}) {
+    this.config = {
+      theme: 'dark',
+      language: 'en',
+      ...config,
+    };
+    this.pages = new Map();
+  }
+
+  async generatePage(slug, content) {
+    const processed = await this.processMarkdown(content);
+    this.pages.set(slug, {
+      content: processed,
+      metadata: this.extractMetadata(content),
+      timestamp: Date.now(),
+    });
+    return processed;
+  }
+
+  processMarkdown(content) {
+    // Complex markdown processing logic
+    return content
+      .replace(/\[\[([^\]]+)\]\]/g, '<Link to="$1">$1</Link>')
+      .replace(/:::(note|warning|tip|error)\s+([\s\S]+?):::/g, '<Callout type="$1">$2</Callout>');
+  }
+}
 ```
 
-<Callout uid="b65f6273-fbc5-496a-a1ec-d7a9d3df4722" kind="warning" collapsed="false">
-  take care of the code this is my humble request &#x20;
+#### Python Example
+
+```python
+import asyncio
+from typing import Dict, List, Optional
+from dataclasses import dataclass
+
+@dataclass
+class Documentation:
+    """A comprehensive documentation system"""
+    title: str
+    content: str
+    metadata: Dict[str, any]
+    tags: List[str] = None
+
+    def __post_init__(self):
+        if self.tags is None:
+            self.tags = []
+
+    async def process(self) -> str:
+        """Process the documentation content"""
+        processed_content = await self._apply_transformations()
+        return processed_content
+
+    async def _apply_transformations(self) -> str:
+        # Apply various content transformations
+        transformations = [
+            self._process_links,
+            self._process_images,
+            self._process_code_blocks
+        ]
+
+        content = self.content
+        for transform in transformations:
+            content = await transform(content)
+
+        return content
+```
+
+### Code Groups
+
+<CodeGroup uid="api-examples-001" show-lines="true">
+  ```typescript
+  // TypeScript API Client
+  interface APIConfig {
+    baseURL: string;
+    apiKey: string;
+    timeout?: number;
+  }
+
+class DocumentationAPI {
+private config: APIConfig;
+
+    constructor(config: APIConfig) {
+      this.config = {
+        timeout: 30000,
+        ...config
+      };
+    }
+
+    async fetchDocumentation(slug: string): Promise<Documentation> {
+      const response = await fetch(`${this.config.baseURL}/docs/${slug}`, {
+        headers: {
+          'Authorization': `Bearer ${this.config.apiKey}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch documentation: ${response.statusText}`);
+      }
+
+      return response.json();
+    }
+
+}
+
+````
+
+```javascript
+// JavaScript API Client
+class DocumentationAPI {
+  constructor(config) {
+    this.config = {
+      timeout: 30000,
+      ...config
+    };
+  }
+
+  async fetchDocumentation(slug) {
+    const response = await fetch(`${this.config.baseURL}/docs/${slug}`, {
+      headers: {
+        'Authorization': `Bearer ${this.config.apiKey}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch documentation: ${response.statusText}`);
+    }
+
+    return response.json();
+  }
+}
+````
+
+```python
+# Python API Client
+import aiohttp
+from typing import Dict, Optional
+
+class DocumentationAPI:
+    def __init__(self, base_url: str, api_key: str, timeout: int = 30):
+        self.base_url = base_url
+        self.api_key = api_key
+        self.timeout = aiohttp.ClientTimeout(total=timeout)
+
+    async def fetch_documentation(self, slug: str) -> Dict:
+        async with aiohttp.ClientSession(timeout=self.timeout) as session:
+            headers = {
+                'Authorization': f'Bearer {self.api_key}',
+                'Content-Type': 'application/json'
+            }
+
+            async with session.get(
+                f'{self.base_url}/docs/{slug}',
+                headers=headers
+            ) as response:
+                if response.status != 200:
+                    raise Exception(f'Failed to fetch: {response.status}')
+
+                return await response.json()
+```
+
+```go
+// Go API Client
+package documentation
+
+import (
+    "encoding/json"
+    "fmt"
+    "net/http"
+    "time"
+)
+
+type APIConfig struct {
+    BaseURL string
+    APIKey  string
+    Timeout time.Duration
+}
+
+type DocumentationAPI struct {
+    config APIConfig
+    client *http.Client
+}
+
+func NewDocumentationAPI(config APIConfig) *DocumentationAPI {
+    if config.Timeout == 0 {
+        config.Timeout = 30 * time.Second
+    }
+
+    return &DocumentationAPI{
+        config: config,
+        client: &http.Client{
+            Timeout: config.Timeout,
+        },
+    }
+}
+
+func (api *DocumentationAPI) FetchDocumentation(slug string) (*Documentation, error) {
+    req, err := http.NewRequest("GET", fmt.Sprintf("%s/docs/%s", api.config.BaseURL, slug), nil)
+    if err != nil {
+        return nil, err
+    }
+
+    req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", api.config.APIKey))
+    req.Header.Set("Content-Type", "application/json")
+
+    resp, err := api.client.Do(req)
+    if err != nil {
+        return nil, err
+    }
+    defer resp.Body.Close()
+
+    if resp.StatusCode != http.StatusOK {
+        return nil, fmt.Errorf("failed to fetch: %s", resp.Status)
+    }
+
+    var doc Documentation
+    return &doc, json.NewDecoder(resp.Body).Decode(&doc)
+}
+```
+
+</CodeGroup>
+
+### Code with Line Highlighting
+
+```jsx {3-5,8-12}
+function DocumentViewer({ document }) {
+  // These lines are highlighted to show important parts
+  const [content, setContent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // This async effect loads and processes the document
+    async function loadDocument() {
+      try {
+        const data = await fetchDocument(document.id);
+        setContent(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadDocument();
+  }, [document.id]);
+
+  if (loading) return <Spinner />;
+  if (error) return <ErrorMessage error={error} />;
+
+  return <MarkdownRenderer content={content} />;
+}
+```
+
+## Tables and Data
+
+### Feature Comparison Table
+
+| Feature             | Basic Plan | Pro Plan  | Enterprise      |
+| ------------------- | ---------- | --------- | --------------- |
+| Documentation Pages | 10         | Unlimited | Unlimited       |
+| Monthly Page Views  | 1,000      | 100,000   | Unlimited       |
+| Custom Domain       | ❌         | ✅        | ✅              |
+| API Access          | Read-only  | Full      | Full + Priority |
+| Support             | Community  | Email     | Dedicated       |
+| Analytics           | Basic      | Advanced  | Custom          |
+| SSO/SAML            | ❌         | ❌        | ✅              |
+| SLA                 | ❌         | 99.9%     | 99.99%          |
+| Price               | Free       | $29/mo    | Custom          |
+
+### Technical Specifications
+
+| Property        | Type                          | Default  | Description                    |
+| --------------- | ----------------------------- | -------- | ------------------------------ |
+| `theme`         | `"light" \| "dark" \| "auto"` | `"auto"` | Color theme preference         |
+| `language`      | `string`                      | `"en"`   | Content language code          |
+| `searchEnabled` | `boolean`                     | `true`   | Enable search functionality    |
+| `analyticsId`   | `string \| null`              | `null`   | Analytics tracking ID          |
+| `customCSS`     | `string`                      | `""`     | Custom CSS overrides           |
+| `plugins`       | `Plugin[]`                    | `[]`     | Array of plugin configurations |
+
+### Performance Metrics
+
+| Metric              | Target  | Current | Status     |
+| ------------------- | ------- | ------- | ---------- |
+| Page Load Time      | < 2s    | 1.3s    | ✅ Exceeds |
+| Time to Interactive | < 3s    | 2.1s    | ✅ Exceeds |
+| Lighthouse Score    | > 90    | 96      | ✅ Exceeds |
+| Bundle Size         | < 200KB | 156KB   | ✅ Meets   |
+| API Response Time   | < 200ms | 145ms   | ✅ Meets   |
+
+## Advanced Layouts
+
+### Multi-Column Content
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+  <div>
+    <h4>Left Column</h4>
+    <p>This demonstrates how you can create multi-column layouts within MDX. This is particularly useful for:</p>
+    <ul>
+      <li>Comparing options side by side</li>
+      <li>Showing before/after examples</li>
+      <li>Creating responsive layouts</li>
+    </ul>
+  </div>
+  <div>
+    <h4>Right Column</h4>
+    <p>The right column can contain different content types, including code:</p>
+    
+```javascript
+// Example configuration
+const config = {
+  columns: 2,
+  gap: '20px',
+  responsive: true
+};
+```
+  </div>
+</div>
+
+### Complex Example: API Reference
+
+<div style="border-radius: 8px; padding: 20px; margin: 20px 0;">
+  <h3 style="margin-top: 0;">POST /api/documents</h3>
+  
+  <p>Create a new documentation page.</p>
+  
+  <h4>Request Body</h4>
+  
+  <CodeGroup uid="api-request-body" show-lines="false">
+    ```json
+    {
+      "title": "Getting Started",
+      "slug": "getting-started",
+      "content": "# Getting Started\n\nWelcome to our documentation...",
+      "metadata": {
+        "author": "John Doe",
+        "tags": ["tutorial", "beginner"],
+        "publishedAt": "2024-01-15T10:00:00Z"
+      }
+    }
+    ```
+    
+    ```yaml
+    title: Getting Started
+    slug: getting-started
+    content: |
+      # Getting Started
+      
+      Welcome to our documentation...
+    metadata:
+      author: John Doe
+      tags:
+        - tutorial
+        - beginner
+      publishedAt: "2024-01-15T10:00:00Z"
+    ```
+  </CodeGroup>
+  
+  <h4>Response</h4>
+  
+  ```json
+  {
+    "id": "doc_123abc",
+    "title": "Getting Started",
+    "slug": "getting-started",
+    "url": "https://docs.example.com/getting-started",
+    "createdAt": "2024-01-15T10:00:00Z",
+    "updatedAt": "2024-01-15T10:00:00Z"
+  }
+  ```
+  
+  <Callout uid="api-auth-note" kind="note" collapsed="false">
+    **Authentication Required:** This endpoint requires a valid API key to be passed in the `Authorization` header.
+  </Callout>
+</div>
+
+### Nested Components Example
+
+<Callout uid="nested-example" kind="tip" collapsed="false">
+  **Advanced Tip:** You can nest different components to create rich, interactive documentation:
+  <Image
+    uid="nested-image"
+    src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop"
+    width="600"
+    height="400"
+    alt="Code on screen"
+    style="width: 100%; height: auto; margin: 10px 0;"
+  />
+  And include code examples within callouts: ```bash # Install dependencies npm install
+  @documentation/cli # Initialize new project npx @documentation/cli init my-docs # Start
+  development server cd my-docs && npm run dev ```
 </Callout>
 
-## This one more heading of the year
+## Interactive Examples
 
-this will have image a beautiful mountain view that you have never seen before
+### Toggle Content
 
-<Image uid="9746c505-e98e-483d-8fb9-c47593ab5717" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" width="800" height="600" alt="Mountain landscape" />
+<details>
+  <summary>Click to expand advanced configuration options</summary>
+  
+  #### Advanced Configuration
+  
+  These options provide fine-grained control over the documentation system:
+  
+  ```javascript
+  {
+    "advanced": {
+      "caching": {
+        "enabled": true,
+        "ttl": 3600,
+        "strategy": "memory"
+      },
+      "rendering": {
+        "prerender": true,
+        "lazyLoad": true,
+        "progressive": true
+      },
+      "optimization": {
+        "minify": true,
+        "compress": true,
+        "bundleAnalysis": false
+      }
+    }
+  }
+  ```
+</details>
 
- 
+### Step-by-Step Guide
+
+1. **Install the Package**
+
+   ```bash
+   npm install documentation-ai --save-dev
+   ```
+
+2. **Configure Your Project**
+   Create a `documentation.config.js` file:
+
+   ```javascript
+   module.exports = {
+     title: 'My Documentation',
+     theme: 'dark',
+     features: ['search', 'versioning'],
+   };
+   ```
+
+3. **Write Your First Page**
+   Create `pages/index.mdx`:
+
+   ```mdx
+   # Welcome
+
+   Start documenting your project!
+   ```
+
+4. **Deploy**
+   ```bash
+   npm run build && npm run deploy
+   ```
+
+<Callout uid="deployment-note" kind="warning" collapsed="false">
+  Make sure to configure your deployment environment variables before running the deploy command.
+  See our [deployment guide](/guides/deployment) for detailed instructions.
+</Callout>
+
+## Conclusion
+
+This comprehensive test file demonstrates all the MDX components available in the DocumentationAI system. Each component can be customized and combined to create rich, interactive documentation that serves your users' needs effectively.
+
+<Image
+  uid="conclusion-image"
+  src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&h=600&fit=crop"
+  width="1200"
+  height="600"
+  alt="Team collaboration"
+  style="width: 100%; max-width: 800px; height: auto; margin: 20px auto; display: block; border-radius: 8px;"
+/>
+
+---
+
+_Last updated: January 2024_

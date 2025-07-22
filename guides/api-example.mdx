@@ -1,0 +1,231 @@
+---
+title: API Example
+description: Example of how to document APIs
+---
+
+# API Example
+
+This page demonstrates how to document APIs effectively using MDX.
+
+## Authentication
+
+All API requests require authentication using an API key.
+
+```http
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Base URL
+
+```
+https://api.example.com/v1
+```
+
+## Endpoints
+
+### Get All Users
+
+Retrieve a list of all users in the system.
+
+```http
+GET /users
+```
+
+#### Parameters
+
+| Parameter | Type    | Required | Description                  |
+| --------- | ------- | -------- | ---------------------------- |
+| `page`    | integer | No       | Page number (default: 1)     |
+| `limit`   | integer | No       | Items per page (default: 20) |
+| `sort`    | string  | No       | Sort order: `asc` or `desc`  |
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "123",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "created_at": "2024-01-15T10:00:00Z"
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "limit": 20,
+    "total": 100
+  }
+}
+```
+
+### Create User
+
+Create a new user account.
+
+```http
+POST /users
+```
+
+#### Request Body
+
+```json
+{
+  "name": "Jane Smith",
+  "email": "jane@example.com",
+  "password": "securepassword123"
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "124",
+  "name": "Jane Smith",
+  "email": "jane@example.com",
+  "created_at": "2024-01-20T14:30:00Z"
+}
+```
+
+#### Error Responses
+
+| Status Code | Description                      |
+| ----------- | -------------------------------- |
+| `400`       | Bad Request - Invalid input data |
+| `401`       | Unauthorized - Invalid API key   |
+| `409`       | Conflict - Email already exists  |
+| `500`       | Internal Server Error            |
+
+### Update User
+
+Update an existing user's information.
+
+```http
+PATCH /users/:id
+```
+
+#### Parameters
+
+| Parameter | Type   | Location | Description |
+| --------- | ------ | -------- | ----------- |
+| `id`      | string | path     | User ID     |
+
+#### Request Body
+
+```json
+{
+  "name": "Jane Doe"
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "124",
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "updated_at": "2024-01-21T09:15:00Z"
+}
+```
+
+## Rate Limiting
+
+API requests are limited to:
+
+- **1000 requests per hour** for authenticated requests
+- **100 requests per hour** for unauthenticated requests
+
+Rate limit information is included in response headers:
+
+```http
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Reset: 1642789200
+```
+
+## Webhooks
+
+Configure webhooks to receive real-time updates:
+
+```json
+{
+  "url": "https://your-app.com/webhook",
+  "events": ["user.created", "user.updated"],
+  "secret": "webhook_secret_key"
+}
+```
+
+### Webhook Payload
+
+```json
+{
+  "event": "user.created",
+  "timestamp": "2024-01-20T14:30:00Z",
+  "data": {
+    "id": "124",
+    "name": "Jane Smith",
+    "email": "jane@example.com"
+  }
+}
+```
+
+## SDKs
+
+Official SDKs are available for:
+
+- **JavaScript/TypeScript**: `npm install @example/api-sdk`
+- **Python**: `pip install example-api`
+- **Ruby**: `gem install example-api`
+- **Go**: `go get github.com/example/api-sdk-go`
+
+### JavaScript Example
+
+```javascript
+import { ExampleAPI } from '@example/api-sdk';
+
+const api = new ExampleAPI({
+  apiKey: 'YOUR_API_KEY',
+});
+
+// Get all users
+const users = await api.users.list({
+  page: 1,
+  limit: 20,
+});
+
+// Create a user
+const newUser = await api.users.create({
+  name: 'John Doe',
+  email: 'john@example.com',
+  password: 'securepassword123',
+});
+```
+
+## Error Handling
+
+All errors follow this format:
+
+```json
+{
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid email format",
+    "details": {
+      "field": "email",
+      "value": "invalid-email"
+    }
+  }
+}
+```
+
+## Testing
+
+Use our sandbox environment for testing:
+
+```
+https://sandbox.api.example.com/v1
+```
+
+Test API keys can be generated from your dashboard.

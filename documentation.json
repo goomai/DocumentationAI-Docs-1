@@ -1,0 +1,44 @@
+{
+  "name": "My Documentation",
+  "logo": "/logo.png",
+  "theme": {
+    "primaryColor": "#0070F3",
+    "font": "Inter"
+  },
+  "navigation": [
+    {
+      "group": "Getting Started",
+      "pages": [
+        {
+          "title": "Introduction",
+          "path": "introduction"
+        },
+        {
+          "title": "Installation",
+          "path": "installation"
+        }
+      ]
+    },
+    {
+      "group": "Guides",
+      "pages": [
+        {
+          "title": "Quick Start",
+          "path": "guides/quick-start"
+        },
+        {
+          "title": "Configuration",
+          "path": "guides/configuration"
+        },
+        {
+          "title": "MDX Components",
+          "path": "guides/mdx-components"
+        },
+        {
+          "title": "API Example",
+          "path": "guides/api-example"
+        }
+      ]
+    }
+  ]
+}

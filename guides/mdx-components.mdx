@@ -1,0 +1,172 @@
+---
+title: MDX Components
+description: Learn about the built-in components available in your documentation
+---
+
+# MDX Components
+
+MDX allows you to use React components directly in your markdown files. Here are the components available out of the box.
+
+## Callouts
+
+Use callouts to highlight important information:
+
+### Note Callout
+
+```mdx
+<Callout type="note">This is a note callout. Use it for additional information.</Callout>
+```
+
+### Warning Callout
+
+```mdx
+<Callout type="warning">This is a warning. Use it for important cautions.</Callout>
+```
+
+### Tip Callout
+
+```mdx
+<Callout type="tip">This is a tip. Use it for helpful suggestions.</Callout>
+```
+
+### Error Callout
+
+```mdx
+<Callout type="error">This is an error callout. Use it for critical issues.</Callout>
+```
+
+## Code Blocks
+
+### Basic Code Block
+
+```javascript
+// JavaScript example
+const greeting = (name) => {
+  return `Hello, ${name}!`;
+};
+
+console.log(greeting('World'));
+```
+
+### With Line Highlighting
+
+```javascript {2-4}
+function calculateSum(a, b) {
+  // These lines are highlighted
+  const sum = a + b;
+  return sum;
+}
+```
+
+### With Title
+
+```javascript title="utils.js"
+export function formatDate(date) {
+  return new Intl.DateTimeFormat('en-US').format(date);
+}
+```
+
+## Tables
+
+Create responsive tables with markdown:
+
+| Feature             | Description               | Status         |
+| ------------------- | ------------------------- | -------------- |
+| MDX Support         | Write JSX in Markdown     | ✅ Stable      |
+| Syntax Highlighting | Beautiful code blocks     | ✅ Stable      |
+| Dark Mode           | Automatic theme switching | ✅ Stable      |
+| Search              | Full-text search          | 🚧 Coming Soon |
+
+## Cards
+
+Display content in cards for better organization:
+
+```mdx
+<Card>
+  <CardTitle>Feature Name</CardTitle>
+  <CardDescription>Brief description of the feature</CardDescription>
+</Card>
+```
+
+## Tabs
+
+Organize content with tabs:
+
+````mdx
+<Tabs defaultValue="npm">
+  <TabsList>
+    <TabsTrigger value="npm">npm</TabsTrigger>
+    <TabsTrigger value="yarn">yarn</TabsTrigger>
+    <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+  </TabsList>
+  <TabsContent value="npm">```bash npm install package-name ```</TabsContent>
+  <TabsContent value="yarn">```bash yarn add package-name ```</TabsContent>
+  <TabsContent value="pnpm">```bash pnpm add package-name ```</TabsContent>
+</Tabs>
+````
+
+## Steps
+
+Guide users through processes:
+
+```mdx
+<Steps>
+  <Step>### Install dependencies Run `npm install` to install all required packages.</Step>
+  <Step>### Configure environment Create a `.env` file with your settings.</Step>
+  <Step>### Start development Run `npm run dev` to start the development server.</Step>
+</Steps>
+```
+
+## File Tree
+
+Display project structure:
+
+```mdx
+<FileTree>
+  <FileTreeFolder name="src" defaultOpen>
+    <FileTreeFolder name="components">
+      <FileTreeFile name="Button.tsx" />
+      <FileTreeFile name="Card.tsx" />
+    </FileTreeFolder>
+    <FileTreeFile name="app.tsx" />
+  </FileTreeFolder>
+  <FileTreeFile name="package.json" />
+</FileTree>
+```
+
+## Videos
+
+Embed videos in your documentation:
+
+```mdx
+<Video src="/demo.mp4" />
+```
+
+Or from YouTube:
+
+```mdx
+<YouTube id="dQw4w9WgXcQ" />
+```
+
+## Custom Components
+
+You can also create your own components. Place them in your documentation repository and import them:
+
+```mdx
+import CustomComponent from './components/CustomComponent';
+
+<CustomComponent prop="value" />
+```
+
+## Best Practices
+
+1. **Keep it Simple**: Don't overuse components. Markdown should be readable as plain text.
+2. **Accessibility**: Ensure all components are keyboard navigable and screen reader friendly.
+3. **Performance**: Large components can slow down page loads. Use them judiciously.
+4. **Consistency**: Use components consistently across your documentation.
+
+## Next Steps
+
+- Explore [Advanced Features](/guides/advanced-features)
+- Learn about [Deployment](/guides/deployment)
+- Check out [API Reference](/api/overview)
