@@ -5,6 +5,7 @@
     "primaryColor": "#0070F3",
     "font": "Inter"
   },
+  "initialRoute": "introduction",
   "navigation": [
     {
       "group": "Getting Started",
