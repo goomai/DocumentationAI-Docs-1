@@ -2,9 +2,11 @@
 title: API Example
 description: Example of how to document APIs
 ---
+
+
 # API Example
 
-This page demonstrates how to document APIs effectively using MDX. asd
+This page demonstrate s how to document APIs effectively using MDX. asd
 
 ## Authentication
 
@@ -29,6 +31,14 @@ Retrieve a list of all users in the system.
 ```http
 GET /users
 ```
+
+#### Parameters
+
+| Parameter | Type    | Required | Description                  |
+| --------- | ------- | -------- | ---------------------------- |
+| `page`    | integer | No       | Page number (default: 1)     |
+| `limit`   | integer | No       | Items per page (default: 20) |
+| `sort`    | string  | No       | Sort order: `asc` or `desc`  |
 
 #### Parameters
 

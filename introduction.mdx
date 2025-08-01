@@ -4,19 +4,21 @@ description: This is some sort of description
 ---
 ## Introduction to the DocumentationAI
 
-Welcome to our comprehensive testing documentation. This page demonstrates all available MDX components with various configurations and use cases.     &#x20;
+Welcome to our comprehensive testing documentation. This page demonstrates all available MDX components with various configurations and use cases.
+
 
 ## Images and Media
 
 ### Basic Image
 
-<Image uid="test-image-001" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" width="800" height="600" alt="Beautiful mountain landscape at sunset" />
 
 ### Responsive Image with Custom Styling
 
-<Image uid="test-image-002" src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=1200&h=800&fit=crop" width="1200" height="800" alt="Modern workspace with laptop and coffee" style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);" />
+<Image uid="test-image-002" src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=1200&h=800&fit=crop" width="NaN" height="NaN" alt="Modern workspace with laptop and coffee" style="width: NaNpx; height: auto; cursor: pointer;" />
 
 ## Callout Components
+
+<Image uid="b248f491-85c7-45d1-8910-2e479ff504e2" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" width="789" height="592" alt="Mountain landscape" style="width: 789px; height: auto; cursor: pointer;" />
 
 ### All Callout Types
 
@@ -377,8 +379,8 @@ function DocumentViewer({ document }) {
   <Image src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop" width="600" height="400" alt="Code on screen" style="width: 100%; height: auto; margin: 10px 0;" />
 
   And include code examples within callouts: `bash # Install dependencies npm install
-                                                    @documentation/cli # Initialize new project npx @documentation/cli init my-docs # Start
-                                                    development server cd my-docs && npm run dev `
+                                                      @documentation/cli # Initialize new project npx @documentation/cli init my-docs # Start
+                                                      development server cd my-docs && npm run dev `
 </Callout>
 
 ## Interactive Examples
