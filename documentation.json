@@ -23,6 +23,10 @@
         ]
       },
       {
+        "group": "API References",
+        "openapi": "openapi.yaml"
+      },
+      {
         "group": "Guides",
         "pages": [
           {
